@@ -796,7 +796,7 @@ document.addEventListener('DOMContentLoaded', () => {
 *Message*: ${message}`;
             
             const encodedText = encodeURIComponent(text);
-            const targetPhone = "91XXXXXXXXXX"; // Placeholder
+            const targetPhone = "919094112869"; // Placeholder
             
             const url = `https://wa.me/${targetPhone}?text=${encodedText}`;
             window.open(url, '_blank');
