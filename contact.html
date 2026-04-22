@@ -47,7 +47,7 @@
                     <div class="cm-icon"><i class="fas fa-envelope"></i></div>
                     <h4>Email Us</h4>
                     <p>For inquiries & documents</p>
-                    <a href="mailto:splabanddiagnostics@gmail.com" class="btn btn-outline btn-sm">splabanddiagnostics@gmail.com</a>
+                    <a href="mailto:splabanddiagnostics@gmail.com" class="btn btn-outline btn-sm" style="white-space: normal; word-break: break-all; padding: 0.5rem; line-height: 1.2;">splabanddiagnostics@gmail.com</a>
                 </div>
                 <div class="contact-method-card fade-in">
                     <div class="cm-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -90,19 +90,6 @@
                     <div class="form-container" style="max-width: none; margin: 0;">
                         <div id="form-success">✅ Your message has been sent successfully! We will contact you shortly.</div>
                         <form id="contactForm">
-                            <div class="form-group">
-                                <label for="inquiryType">Inquiry Type *</label>
-                                <select id="inquiryType" class="form-control" required>
-                                    <option value="">Select inquiry type</option>
-                                    <option value="booking">Test Booking / Appointment</option>
-                                    <option value="pricing">Pricing & Packages</option>
-                                    <option value="report">Report Related</option>
-                                    <option value="home">Home Collection</option>
-                                    <option value="corporate">Corporate Inquiry</option>
-                                    <option value="feedback">Feedback / Complaint</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="contactName">Full Name *</label>
@@ -120,15 +107,7 @@
                                 <input type="email" id="contactEmail" class="form-control" placeholder="your.email@example.com">
                                 <span class="form-error">Please enter a valid email</span>
                             </div>
-                            <div class="form-group">
-                                <label for="preferredCenter">Preferred Center</label>
-                                <select id="preferredCenter" class="form-control">
-                                    <option value="">Select center (optional)</option>
-                                    <option value="main">Chennai - Main Center</option>
-                                    <option value="branch1">Chennai - [AREA_1] Branch</option>
-                                    <option value="branch2">Chennai - [AREA_2] Branch</option>
-                                </select>
-                            </div>
+
                             <div class="form-group">
                                 <label for="contactMessage">Your Message *</label>
                                 <textarea id="contactMessage" class="form-control" placeholder="Describe your inquiry in detail..." required></textarea>
@@ -247,5 +226,35 @@
     <a href="https://wa.me/919094112869?text=Hi%2C%20I%20need%20assistance." class="whatsapp-float" aria-label="Chat on WhatsApp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span class="tooltip">Chat with us</span></a>
     <button class="back-to-top" id="backToTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('contactName').value;
+                    const phone = document.getElementById('contactPhone').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const message = document.getElementById('contactMessage').value;
+                    
+                    let waMessage = `*New Contact Inquiry*\n\n`;
+                    waMessage += `*Name:* ${name}\n`;
+                    waMessage += `*Phone:* ${phone}\n`;
+                    if (email) waMessage += `*Email:* ${email}\n`;
+                    waMessage += `\n*Message:*\n${message}`;
+                    
+                    const encodedMessage = encodeURIComponent(waMessage);
+                    const whatsappUrl = `https://wa.me/919094112869?text=${encodedMessage}`;
+                    
+                    window.open(whatsappUrl, '_blank');
+                    
+                    const successMsg = document.getElementById('form-success');
+                    if(successMsg) successMsg.style.display = 'block';
+                    form.reset();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
